@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       {/* ページのタイトル部分 */}
       <header>
-        <h1>fLens v.0.3.0</h1>
+        <h1>fLens v.0.3.2</h1>
       </header>
 
       <main>

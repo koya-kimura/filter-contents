@@ -1,6 +1,6 @@
 {
   "name": "filter-contents",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "",
   "main": "index.js",
   "homepage": "https://koya-kimura.github.io/filter-contents/",
@@ -15,7 +15,7 @@
     "deploy": "npm run rm && npm run build && npm run mv && npm run git"
   },
   "keywords": [],
-  "author": "Koya Kimura, Takumi Sakamoto, KOTATSU(仮)",
+  "author": "Koya Kimura, Takumi Sakamoto, Kotatsu",
   "license": "ISC",
   "dependencies": {
     "p5": "^1.9.1",
