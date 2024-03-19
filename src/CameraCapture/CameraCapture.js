@@ -52,6 +52,9 @@ export default class CameraCapture extends Component {
 
       // Webカメラのキャプチャ開始
       capture = p.createCapture(p.VIDEO);
+      // capture = p.createCapture(p.VIDEO, { flipped: true });
+      // console.log(p.createCapture);
+      // capture = p.createCapture(p.VIDEO, true);
       capture.hide();
     };
 

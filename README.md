@@ -1,6 +1,18 @@
 
 ### wip glslでのフィルターを試せるツールを作成しています.
 
+# 前バージョンとの差異
+- パッケージのアップグレード
+  - 描画パッケージ ```p5``` をバージョン1.9.1に変更
+  ```sh
+  $ npm outdated    # アップデートの確認
+  Package  Current  Wanted  Latest  Location         Depended by
+  p5         1.9.0   1.9.1   1.9.1  node_modules/p5  filter-contents
+  
+  $ npm install p5  # アップグレード
+  ```
+- アプリの組みなおし
+
 # ファイル構成
 ```
 filter-contents
