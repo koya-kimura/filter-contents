@@ -15,7 +15,7 @@
     "deploy": "npm run rm && npm run build && npm run mv && npm run git"
   },
   "keywords": [],
-  "author": "Koya Kimura, Takumi Sakamoto, Kotatsu",
+  "author": "Takumi Sakamoto",
   "license": "ISC",
   "dependencies": {
     "p5": "^1.9.1",

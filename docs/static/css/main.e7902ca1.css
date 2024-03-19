@@ -1,2 +1,0 @@
-html *{margin:0;padding:0}header{background-color:#202020;display:flex;height:10vh;justify-content:center}header>h1{color:#fff}main>*{display:flex;justify-content:center}main>.CameraCapture{height:80vh}main>.CameraCapture>canvas{margin:auto}main>#UI{height:10vh}main>#UI>button{height:80%;margin-left:2.5%;margin-right:2.5%;width:10%}
-/*# sourceMappingURL=main.e7902ca1.css.map*/
