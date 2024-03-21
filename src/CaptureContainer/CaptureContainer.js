@@ -15,7 +15,7 @@ import DownLoadButton from "../image/DownLoadButton2.svg";
 import mediaArtTypo from "../image/MediaArtProject.svg";
 
 // 画面上全体の領域
-export default function CaptureContainer() {
+export default function CaptureContainer({ shaderIndex }) {
   // // 次のシェーダをフィルターとして適用する
   // function nextShader() {
   //   shaderIndex = (shaderIndex + 1) % fileList.length;
@@ -32,7 +32,7 @@ export default function CaptureContainer() {
     <div className="CaptureContainer">
       {/* 画面上左側: fLensのタイポとロゴ */}
       <div className="CaptureContainerLeft">
-        <img src={flensTypo}></img>
+        <img src={flensTypo} ></img>
         <br></br>
         <img src={flensLogo}></img>
       </div>
@@ -40,7 +40,7 @@ export default function CaptureContainer() {
       {/* 画面上中央: カメラのキャプチャ */}
       <div className="CaptureContainerCenter">
         <div className="CaptureContainerCenter-top">
-          <CameraCapture />
+          <CameraCapture shaderIndex={shaderIndex} />
           {/* 画像の大きさはカメラサイズの決定が決まり次第要調整 */}
           <img src={CaptureFrame} width={100 + "%"} height={100 + "%"}></img>
           {/* <img src={CaptureFrame}></img> */}

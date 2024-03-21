@@ -3,14 +3,19 @@ import FilterSelectContainer from "./FilterSelectContainer/FilterSelectContainer
 
 // import "./style_debug.css"; // デバッグ用のスタイリング
 import "./App.css";
+import { useState } from "react";
 
 // Appコンポーネントの定義
 function App() {
+  const [shaderIndex, setShaderIndex] = useState(0);
 
+  // function changeShaderIndex(i) {
+  //   setShaderIndex(i);
+  // }
 
   return (
-    <div className="App">
-      <CaptureContainer />
+    <div className="App" >
+      <CaptureContainer shaderIndex={shaderIndex} />
       {/* ページのタイトル部分 */}
       {/* <header> */}
       {/* <h1>fLens v.0.3.2</h1> */}
@@ -20,8 +25,7 @@ function App() {
       {/* <CameraCapture /> */}
 
       {/* UI */}
-      <FilterSelectContainer />
-
+      <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} />
 
     </div>
   );
