@@ -5,7 +5,7 @@ import p5 from 'p5';
 import { fileList } from "./fileList";
 
 // 利用するシェーダのインデックス
-import { shaderIndex } from "../../../src/App"
+import { shaderIndex } from "../../FilterSelectContainer/FilterSelectContainer"
 
 let P;
 //let w, h;
@@ -54,17 +54,15 @@ export default class CameraCapture extends Component {
       // pg = p5.createGraphics(p5.width, p5.height);
 
       // Webカメラのキャプチャ開始
-      capture = p.createCapture(p.VIDEO);
+      capture = p.createCapture(p.VIDEO, calculateLayout);
       // capture = p.createCapture(p.VIDEO, { flipped: true });
       // console.log(p.createCapture);
       // capture = p.createCapture(p.VIDEO, true);
 
-      // カメラの解像度
-      capture.size(640, 480);
       capture.hide();
 
       // カメラの解像度を考慮したキャンバスサイズの変更
-      calculateLayout();
+      // calculateLayout();
     };
 
     p.draw = () => {
@@ -100,6 +98,7 @@ export default class CameraCapture extends Component {
       // キャンバスとカメラ映像のアスペクト比に基づくスケーリング比を計算
       let scale = p.min(newWidth / capture.width, newHeight / capture.height);
 
+      console.log(capture.width, capture.height);
       p.resizeCanvas(capture.width * scale, capture.height * scale, p.WEBGL);
     }
   };

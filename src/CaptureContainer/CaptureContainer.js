@@ -13,6 +13,7 @@ import CaptureBottomRight from "../image/CaptureBottomRight.png";
 import DownLoadButton from "../image/DownLoadButton.svg";
 import mediaArtTypo from "../image/MediaArtProject.svg";
 
+// 画面上全体の領域
 export default function CaptureContainer() {
   // // 次のシェーダをフィルターとして適用する
   // function nextShader() {
@@ -28,14 +29,14 @@ export default function CaptureContainer() {
 
   return (
     <div className="CaptureContainer">
-
+      {/* 画面上左側: fLensのタイポとロゴ */}
       <div className="CaptureContainerLeft">
         <img src={flensTypo}></img>
         <br></br>
         <img src={flensLogo}></img>
       </div>
 
-      {/* カメラのキャプチャ */}
+      {/* 画面上中央: カメラのキャプチャ */}
       <div className="CaptureContainerCenter">
         <div className="CaptureContainerCenter-top">
           <CameraCapture />
@@ -52,6 +53,7 @@ export default function CaptureContainer() {
         </div>
       </div>
 
+      {/* 画面上右側: Media Art Project */}
       <div className="CaptureContainerRight">
         <img src={mediaArtTypo}></img>
       </div>
