@@ -1,5 +1,6 @@
 // import CameraCapture from "./CameraCapture/CameraCapture"
 import CameraCapture, { saveImage } from "./CameraCapture/CameraCapture";
+import "./CaptureContainer.css";
 
 // シェーダに関するソースファイルのリスト
 // import { fileList } from "./CameraCapture/fileList";
@@ -7,9 +8,9 @@ import CameraCapture, { saveImage } from "./CameraCapture/CameraCapture";
 // 画像に関するパス
 import flensTypo from "../image/fLens.svg";
 import flensLogo from "../image/Logo.svg";
-import CaptureFrame from "../image/CaptureFrame.png";
-import CaptureBottomLeft from "../image/CaptureBottomLeft.png";
-import CaptureBottomRight from "../image/CaptureBottomRight.png";
+import CaptureFrame from "../image/CaptureFrame.svg";
+import CaptureBottomLeft from "../image/CaptureBottomLeft.svg";
+import CaptureBottomRight from "../image/CaptureBottomRight.svg";
 import DownLoadButton from "../image/DownLoadButton2.svg";
 import mediaArtTypo from "../image/MediaArtProject.svg";
 

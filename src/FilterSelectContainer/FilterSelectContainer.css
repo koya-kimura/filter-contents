@@ -1,0 +1,52 @@
+
+.FilterSelectContainer{
+  height: 25vh;
+  width: 100vw;
+
+  /* 中央に寄せる */
+  display: flex;
+  justify-content: center;
+  background-color: rgb(40, 40, 40);
+
+  position: relative;
+}
+
+
+.FilterSelectContainer > img.btn{
+  height: 50%;
+  /* top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0; */
+
+  /* 上下中央 */
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.FilterSelectContainer > img.focus{
+  height: 80%;
+
+  /* 上下中央 */
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1%;
+  margin-right: 1%;
+  /* position: relative; */
+
+  display: flex;
+}
+
+img.preview{
+  height: 80%;
+
+  /* 中央に寄せる */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* margin-top: auto;
+  margin-bottom: auto; */
+  margin: auto;
+}

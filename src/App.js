@@ -2,7 +2,7 @@ import CaptureContainer from "./CaptureContainer/CaptureContainer"
 import FilterSelectContainer from "./FilterSelectContainer/FilterSelectContainer"
 
 // import "./style_debug.css"; // デバッグ用のスタイリング
-import "./style.css";
+import "./App.css";
 
 // Appコンポーネントの定義
 function App() {

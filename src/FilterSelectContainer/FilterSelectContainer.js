@@ -1,5 +1,6 @@
 // 使用するGLSLフィルターのインデックス
 export let shaderIndex = 0;
+import "./FilterSelectContainer.css";
 
 // // 利用するシェーダのインデックス
 // import { shaderIndex } from "../App"
@@ -10,7 +11,8 @@ import { fileList } from "../CaptureContainer/CameraCapture/fileList";
 // 画像に関するパス
 import LeftButton from "../image/LeftButton.svg";
 import RightButton from "../image/RightButton.svg";
-
+import FocusFilter from "../image/FocusFilter.svg";
+import Preview from "../image/monochrome.png";
 
 export default function FilterSelectContainer() {
   // 次のシェーダをフィルターとして適用する
@@ -27,12 +29,14 @@ export default function FilterSelectContainer() {
 
   return (
     <div className="FilterSelectContainer">
-      <img src={LeftButton} onClick={backShader} className=""></img>
+      <img src={LeftButton} onClick={backShader} className="btn"></img>
       {/* <button onClick={backShader}>←</button> */}
-      <img src={RightButton} onClick={nextShader} className=""></img>
+
+      <img src={FocusFilter} className="focus"></img>
+      <img src={Preview} className="preview"></img>
+
+      <img src={RightButton} onClick={nextShader} className="btn"></img>
       {/* <button onClick={nextShader}>→</button> */}
-
-
     </div>
   );
 }
