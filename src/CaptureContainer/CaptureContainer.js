@@ -10,7 +10,7 @@ import flensLogo from "../image/Logo.svg";
 import CaptureFrame from "../image/CaptureFrame.png";
 import CaptureBottomLeft from "../image/CaptureBottomLeft.png";
 import CaptureBottomRight from "../image/CaptureBottomRight.png";
-import DownLoadButton from "../image/DownLoadButton.svg";
+import DownLoadButton from "../image/DownLoadButton2.svg";
 import mediaArtTypo from "../image/MediaArtProject.svg";
 
 // 画面上全体の領域
@@ -40,9 +40,9 @@ export default function CaptureContainer() {
       <div className="CaptureContainerCenter">
         <div className="CaptureContainerCenter-top">
           <CameraCapture />
-          {/* <img src={CaptureFrame}></img> */}
           {/* 画像の大きさはカメラサイズの決定が決まり次第要調整 */}
           <img src={CaptureFrame} width={100 + "%"} height={100 + "%"}></img>
+          {/* <img src={CaptureFrame}></img> */}
         </div>
         <div className="CaptureContainerCenter-bottom">
           <img src={CaptureBottomLeft} className="CaptureContainerCenter-bottom-sides"></img>

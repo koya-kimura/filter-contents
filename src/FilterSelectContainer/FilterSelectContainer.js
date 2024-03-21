@@ -8,8 +8,8 @@ export let shaderIndex = 0;
 import { fileList } from "../CaptureContainer/CameraCapture/fileList";
 
 // 画像に関するパス
-import CaptureBottomLeft from "../image/CaptureBottomLeft.png";
-import CaptureBottomRight from "../image/CaptureBottomRight.png";
+import LeftButton from "../image/LeftButton.svg";
+import RightButton from "../image/RightButton.svg";
 
 
 export default function FilterSelectContainer() {
@@ -27,10 +27,10 @@ export default function FilterSelectContainer() {
 
   return (
     <div className="FilterSelectContainer">
-
-      <button onClick={backShader}>←</button>
-      {/* <image > */}
-      <button onClick={nextShader}>→</button>
+      <img src={LeftButton} onClick={backShader} className=""></img>
+      {/* <button onClick={backShader}>←</button> */}
+      <img src={RightButton} onClick={nextShader} className=""></img>
+      {/* <button onClick={nextShader}>→</button> */}
 
 
     </div>
