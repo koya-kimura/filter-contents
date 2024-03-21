@@ -36,7 +36,6 @@ function App() {
       {/* UI */}
       <div id="UI">
         <button onClick={backShader}>←</button>
-        <button onClick={saveImage}>o</button>
         <button onClick={nextShader}>→</button>
       </div>
 

@@ -28,26 +28,27 @@ export default class CameraCapture extends Component {
   sketchHandler = p => {
     let filterShaders = []; // シェーダオブジェクト
     let capture;        // カメラのキャプチャ
-    // const scl = 0.8;
-    // const scl = 0.75;
-    const scl = 0.5;
+
+    // ページに対するキャンバスの最大サイズ率
+    // const canvasScaleMax = 0.8;
+    // const canvasScaleMax = 0.75;
+    const canvasScaleMax = 0.5;
 
     p.preload = () => {
+      // 全フィルタファイルを読み込んでフィルタ(Shaderオブジェクト)を生成
       fileList.forEach(fp => {
         filterShaders.push(p.loadShader(fp.vert, fp.frag));
       });
     };
 
-    p.windowResized = () => {
-      p.resizeCanvas(p.windowWidth * scl, p.windowHeight * scl, p.WEBGL);
-    }
-
     p.setup = () => {
-      // saveImage()関数を使うためにpをグローバルへ引き上げる
+      // saveImage()関数を使うためにpをグローバルへ引き上げる（荒ワザすぎるので修正の余地があるかも）
       P = p;
 
       // メインキャンバスの作成
-      p.createCanvas(p.windowWidth * scl, p.windowHeight * scl, p.WEBGL);
+      p.createCanvas(p.windowWidth * canvasScaleMax, p.windowHeight * canvasScaleMax, p.WEBGL);
+      // p.createCanvas(p.windowWidth * canvasScaleMax, p.windowHeight * canvasScaleMax);
+      // p.createCanvas(p.windowWidth * scale, p.windowHeight * scale, p.WEBGL);
 
       // 仮想キャンバスの作成
       // pg = p5.createGraphics(p5.width, p5.height);
@@ -57,7 +58,13 @@ export default class CameraCapture extends Component {
       // capture = p.createCapture(p.VIDEO, { flipped: true });
       // console.log(p.createCapture);
       // capture = p.createCapture(p.VIDEO, true);
+
+      // カメラの解像度
+      capture.size(640, 480);
       capture.hide();
+
+      // カメラの解像度を考慮したキャンバスサイズの変更
+      calculateLayout();
     };
 
     p.draw = () => {
@@ -65,6 +72,7 @@ export default class CameraCapture extends Component {
 
       filterShaders[shaderIndex].setUniform("u_time", p.frameCount / 100);
       filterShaders[shaderIndex].setUniform("u_Resolution", [p.width, p.height]);
+      // filterShaders[shaderIndex].setUniform("u_Resolution", [capture.width * scale, capture.height * scale]);
 
       filterShaders[shaderIndex].setUniform("u_tex", capture);
 
@@ -74,12 +82,26 @@ export default class CameraCapture extends Component {
       // filterShaders.setUniform('u_color3', normalizeColors[3]);
       // filterShaders.setUniform('u_color4', normalizeColors[4]);
 
+      // キャプチャした画像にShaderでフィルタかけたものを描画
       p.rect(0, 0, p.width, p.height);
-
-      // w = p.windowWidth * scl / p.windowWidth * 100;
-      // h = p.windowHeight * scl;
-      // console.log(w + ", " + P.width)
     };
+
+    p.windowResized = () => {
+      // キャンバスサイズを考慮したカメラの比率計算
+      calculateLayout();
+    }
+
+    // キャンバスサイズを考慮したカメラの比率計算
+    function calculateLayout() {
+      // リサイズされたキャンバスサイズの計算
+      let newWidth = p.windowWidth * canvasScaleMax;
+      let newHeight = p.windowHeight * canvasScaleMax;
+
+      // キャンバスとカメラ映像のアスペクト比に基づくスケーリング比を計算
+      let scale = p.min(newWidth / capture.width, newHeight / capture.height);
+
+      p.resizeCanvas(capture.width * scale, capture.height * scale, p.WEBGL);
+    }
   };
 
   render() {
@@ -88,6 +110,8 @@ export default class CameraCapture extends Component {
     );
   }
 }
+
+
 
 // 画像の保存
 export function saveImage() {
