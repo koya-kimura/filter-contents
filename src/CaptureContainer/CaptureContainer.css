@@ -1,92 +1,247 @@
 .CaptureContainer{
-  height: 75vh;
   width: 100vw;
+  height: 70vh;
 
   /* 中央に寄せる */
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   background-color: rgb(40, 40, 40);
+
+  /* ***************** */
+  /*     変数の定義     */
+  /* ***************** */
+
+  /* --------------------------------------------- */
+  /* CaptureContainerLeft と CaptureContainerRight */
+  /* --------------------------------------------- */
+  /* 上と(左 / 右)の余白 */
+  --CaptureContainerSide_PaddingSide: 2.1vw;
+  --CaptureContainerSide_PaddingTop: 3.8vh;
+
+  /* 余白を含めた各要素の横幅 */
+  --CaptureContainerLeft_Width_WithPadding: 8.680555556vw;
+  --CaptureContainerRight_Width_WithPadding: 10vw;
+
+  /* --------------------------------------------- */
+  /*            CaptureContainerCenter             */
+  /* --------------------------------------------- */
+  /* 横幅 */
+  /* --CaptureContainerCenter_Width: calc(100vw - var(--CaptureContainerSide_Width_WithPadding) * 2); */
+  /* --CaptureContainerCenter_Width: calc(100vw - var(--CaptureContainerSide_Width) * 2); */
+  --CaptureContainerCenter_Width: calc(100vw - var(--CaptureContainerLeft_Width_WithPadding) - var(--CaptureContainerRight_Width_WithPadding));
 }
 
-/* 画面左上 */
+/* ************* */
+/*    画面左上    */
+/* ************* */
 .CaptureContainer > div.CaptureContainerLeft{
-  width: 10vw;
+  /* width: 10vw; */
+  width: var(--CaptureContainerSide_Width);
 
   /* 要調整: fLensのタイポとロゴの配置 */
-  text-align: center;
-  padding-top: 1vh; /* 要調整 */
+  /* text-align: center; */
+
+  /* 左と上の余白 */
+  padding-left: var(--CaptureContainerSide_PaddingSide);
+  padding-top: var(--CaptureContainerSide_PaddingTop);
+  /* margin-left: 2.1vw;
+  margin-top: 3.8vh; */
+  /* padding-left: 30px;
+  padding-top: 30px; */
+  /* margin: 0; */
 }
 
+/* fLensのタイポとロゴの画像 */
 .CaptureContainer > div.CaptureContainerLeft > img{
-  width: 90%;
+  padding: 0;
+
+  width: 6.6vw;
+  /* height: 5vh; */
 }
 
-/* 画面上中央 */
+/* ************* */
+/*   画面上中央   */
+/* ************* */
 .CaptureContainer > div.CaptureContainerCenter {
-  width: 60vw;
+  /* width: 60vw; */
+  width: var(--CaptureContainerCenter_Width);
+  /* padding-top: 4vh; */
 
-  padding-left: 10vw;
-  padding-right: 10vw;
+  /* 内部に余白を作る */
+  margin-top: 8.625vh;
+  margin-left: 13.47222222vw;
+  margin-right: 12.08333333vw;
+  
   /* 要調整 */
+  /* padding-left: 10vw;
+  padding-right: 10vw; */
+  /* margin: 8.5vh; */
+
+  /* キャプチャのフレーム画像の高さ */
+  --CaptureFrameWidth: 55.55555556vw;
 }
 
+/* キャプチャとそのフレーム画像 */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top{
   width: 100%;
-  height: 80%;
+  /* height: 80%; */
 
-  padding-top: 3%;
+  /* padding-top: 3%; */
 
   /* p5.jsのキャンバスの上に画像を重ねる */
   display: flex;
+
+  /* 子要素を中央に寄せるため相対的な基準点とする */
   position: relative;
 }
 
+/* フレーム画像 */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top > img{
-  position: absolute;
+  /* position: absolute; */
+  /* position: relative; */
 
+  /* width: 53.75vw;
+  width: 53.75vw; */
+
+  /* width: 55.56vw;
+  height: 53.75vh; */
+
+  /* width: var(--CaptureContainerCenter_Width); */
+  width: var(--CaptureFrameWidth);
+  height: 53.75vh;
   /* 中央に寄せる */
   top: 0;
-  right: 0;
   bottom: 0;
+  right: 0;
   left: 0;
   margin: auto;
+
+  /* position: absolute; */
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto; */
+  /* position: relative; */
+
+
+  /* z-index: -1; */
 }
 
-
+/* キャプチャを収めるコンポーネント */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top > div.CameraCapture{
+  /* width: 100%; */
+
+  /* width: 55.56vw;
+  height: 53.75vh; */
+
+  /* width: 100%; */
   /* 中央に寄せる */
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-}
+  /* top: 0vh;
+  bottom: 0; */
+  /* right: 0;
+  left: 0; */
+  /* margin: auto; */
 
-.CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom{
+  /* display: flex; */
+
+  /* 子要素を中央に寄せる */
+  /* position: absolute; */
   display: flex;
-  width: 100%;
-  height: 14%;
+
+  /* z-index: +1; */
 }
 
-.CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img.CaptureContainerCenter-bottom-sides{
-  width: 47.5%;
+/* キャプチャ（p5.js のキャンバス） */
+.CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top > div.CameraCapture > canvas{
+    /* 中央に寄せる */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
 }
 
+/* キャプチャ下部の装飾とダウンロードボタン */
+.CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom{
+  width: var(--CaptureFrameWidth);
+  height: 7vh;
+
+  /* display: flex; */
+  /* justify-content: space-between; */
+
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-between;
+}
+
+/* キャプチャ下部の装飾とダウンロードボタン(画像全体) */
+.CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* キャプチャ下部の装飾(左) */
+.CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img.CaptureContainerCenter-bottom-left{
+  /* 左に配置 */
+  grid-column: 1;
+
+  /* width: 43.125%; */
+  width: 23.95833333vw;
+  /* height: 3.5vh; */
+
+  /* order: 1; 左に配置 */
+}
+
+/* ダウンロードボタン */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img.CaptureContainerCenter-bottom-center{
-  width: 5%;
+  /* 水平方向に対して中央に配置 */
+  /* order: 2; 
+  margin: auto; */
+  grid-column: 2;
+
+  width: 4vw;
+  /* height: 100%; */
+
+
 }
 
-/* 画面右上 */
+/* キャプチャ下部の装飾(右) */
+.CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img.CaptureContainerCenter-bottom-right{
+  /* 右に配置 */
+  grid-column: 3;
+  /* order: 3; */
+
+  width: 23.95833333vw;
+  /* height: 3.5vh; */
+}
+
+/* ************* */
+/*    画面右上   */
+/* ************* */
 .CaptureContainer > div.CaptureContainerRight{
-  width: 10vw;
+  width: var(--CaptureContainerSide_Width_WithPadding);
+
+  /* 上と右の余白 */
+  /* padding-top: 3.8vh;
+  padding-right: 2.1vw; */
+  padding-right: var(--CaptureContainerSide_PaddingSide);
+  padding-top: var(--CaptureContainerSide_PaddingTop);
 
   /* 要調整: media art projectのタイポの配置 */
-  text-align: center;
-  padding-top: 1vh; /* 要調整 */
-
+  display: inline-block;
+  text-align: right;
+  text-align: right;
+  /* float: right; */
 }
 
 /* 要調整: fLensのタイポとロゴ */
 .CaptureContainer > div.CaptureContainerRight > img{
-  width: 95%;
+
+    
+  width: 7.92vw;
+  height: 1.75vh;
 }

@@ -25,7 +25,7 @@ function App() {
       {/* <CameraCapture /> */}
 
       {/* UI */}
-      <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} />
+      {/* <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} /> */}
 
     </div>
   );

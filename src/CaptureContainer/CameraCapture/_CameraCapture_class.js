@@ -36,15 +36,15 @@ export default class CameraCapture extends Component {
 
   sketchHandler = p => {
     let filterShaders = []; // シェーダオブジェクト
-    let capture;        // カメラのキャプチャ
+    let capture;            // カメラのキャプチャ
 
     // ページに対するキャンバスの最大サイズ率
     // const canvasScaleMax = 0.8;
     // const canvasScaleMax = 0.75;
     const canvasScaleMax = 0.5;
 
+    // 全フィルタファイルを読み込んでフィルタ(Shaderオブジェクト)を生成
     p.preload = () => {
-      // 全フィルタファイルを読み込んでフィルタ(Shaderオブジェクト)を生成
       fileList.forEach(fp => {
         filterShaders.push(p.loadShader(fp.vert, fp.frag));
       });
@@ -78,6 +78,7 @@ export default class CameraCapture extends Component {
       console.log(this.shaderIndex)
       p.shader(filterShaders[this.shaderIndex]);
 
+      // Shaderへ情報を渡す
       filterShaders[this.shaderIndex].setUniform("u_time", p.frameCount / 100);
       filterShaders[this.shaderIndex].setUniform("u_Resolution", [p.width, p.height]);
       // filterShaders[shaderIndex].setUniform("u_Resolution", [capture.width * scale, capture.height * scale]);
