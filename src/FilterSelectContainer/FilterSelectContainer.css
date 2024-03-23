@@ -11,9 +11,11 @@
   position: relative;
 }
 
-
+/* 左右の矢印ボタン */
 .FilterSelectContainer > img.btn{
-  height: 50%;
+  width: 3.75vw;
+  height: 6.75vh;
+
   /* top: 0;
   bottom: 0;
   right: 0;
@@ -24,8 +26,12 @@
   margin-bottom: auto;
 }
 
+/* 中央の画像: 選択しているフィルタのプレビュー画像の後ろ */
 .FilterSelectContainer > img.focus{
-  height: 80%;
+  width: 12.77777778vw;
+  height: 23vh;
+
+  /* height: 80%; */
 
   /* 上下中央 */
   margin-top: auto;
@@ -38,7 +44,8 @@
 }
 
 img.preview{
-  height: 80%;
+  width: 9.305555556vw;
+  height: 21.875vh;
 
   /* 中央に寄せる */
   position: absolute;
@@ -46,7 +53,5 @@ img.preview{
   right: 0;
   bottom: 0;
   left: 0;
-  /* margin-top: auto;
-  margin-bottom: auto; */
   margin: auto;
 }

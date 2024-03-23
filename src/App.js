@@ -15,18 +15,11 @@ function App() {
 
   return (
     <div className="App" >
+      {/* アプリ上部 */}
       <CaptureContainer shaderIndex={shaderIndex} />
-      {/* ページのタイトル部分 */}
-      {/* <header> */}
-      {/* <h1>fLens v.0.3.2</h1> */}
-      {/* </header> */}
 
-      {/* カメラのキャプチャ */}
-      {/* <CameraCapture /> */}
-
-      {/* UI */}
-      {/* <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} /> */}
-
+      {/* アプリ下部 */}
+      <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} />
     </div>
   );
 }

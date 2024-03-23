@@ -4,7 +4,6 @@
 
   /* 中央に寄せる */
   display: flex;
-  /* justify-content: center; */
   background-color: rgb(40, 40, 40);
 
   /* ***************** */
@@ -21,72 +20,42 @@
   /* 余白を含めた各要素の横幅 */
   --CaptureContainerLeft_Width_WithPadding: 8.680555556vw;
   --CaptureContainerRight_Width_WithPadding: 10vw;
-
-  /* --------------------------------------------- */
-  /*            CaptureContainerCenter             */
-  /* --------------------------------------------- */
-  /* 横幅 */
-  /* --CaptureContainerCenter_Width: calc(100vw - var(--CaptureContainerSide_Width_WithPadding) * 2); */
-  /* --CaptureContainerCenter_Width: calc(100vw - var(--CaptureContainerSide_Width) * 2); */
-  --CaptureContainerCenter_Width: calc(100vw - var(--CaptureContainerLeft_Width_WithPadding) - var(--CaptureContainerRight_Width_WithPadding));
 }
 
 /* ************* */
 /*    画面左上    */
 /* ************* */
 .CaptureContainer > div.CaptureContainerLeft{
-  /* width: 10vw; */
-  width: var(--CaptureContainerSide_Width);
-
-  /* 要調整: fLensのタイポとロゴの配置 */
-  /* text-align: center; */
-
   /* 左と上の余白 */
   padding-left: var(--CaptureContainerSide_PaddingSide);
   padding-top: var(--CaptureContainerSide_PaddingTop);
-  /* margin-left: 2.1vw;
-  margin-top: 3.8vh; */
-  /* padding-left: 30px;
-  padding-top: 30px; */
-  /* margin: 0; */
+
+  /* 横幅 */
+  width: var(--CaptureContainerSide_Width);
 }
 
 /* fLensのタイポとロゴの画像 */
 .CaptureContainer > div.CaptureContainerLeft > img{
-  padding: 0;
-
   width: 6.6vw;
-  /* height: 5vh; */
 }
 
 /* ************* */
 /*   画面上中央   */
 /* ************* */
 .CaptureContainer > div.CaptureContainerCenter {
-  /* width: 60vw; */
-  width: var(--CaptureContainerCenter_Width);
-  /* padding-top: 4vh; */
-
   /* 内部に余白を作る */
   margin-top: 8.625vh;
   margin-left: 13.47222222vw;
   margin-right: 12.08333333vw;
-  
-  /* 要調整 */
-  /* padding-left: 10vw;
-  padding-right: 10vw; */
-  /* margin: 8.5vh; */
 
-  /* キャプチャのフレーム画像の高さ */
+  /* キャプチャのフレーム画像の横幅 */
   --CaptureFrameWidth: 55.55555556vw;
 }
 
 /* キャプチャとそのフレーム画像 */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top{
+  /* 横幅 */
   width: 100%;
-  /* height: 80%; */
-
-  /* padding-top: 3%; */
 
   /* p5.jsのキャンバスの上に画像を重ねる */
   display: flex;
@@ -97,126 +66,81 @@
 
 /* フレーム画像 */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top > img{
-  /* position: absolute; */
-  /* position: relative; */
-
-  /* width: 53.75vw;
-  width: 53.75vw; */
-
-  /* width: 55.56vw;
-  height: 53.75vh; */
-
-  /* width: var(--CaptureContainerCenter_Width); */
+  /* 縦横に柔軟性あり */
   width: var(--CaptureFrameWidth);
   height: 53.75vh;
+
   /* 中央に寄せる */
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   margin: auto;
-
-  /* position: absolute; */
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto; */
-  /* position: relative; */
-
-
-  /* z-index: -1; */
 }
 
 /* キャプチャを収めるコンポーネント */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top > div.CameraCapture{
-  /* width: 100%; */
-
-  /* width: 55.56vw;
-  height: 53.75vh; */
-
-  /* width: 100%; */
-  /* 中央に寄せる */
-  /* top: 0vh;
-  bottom: 0; */
-  /* right: 0;
-  left: 0; */
-  /* margin: auto; */
-
-  /* display: flex; */
-
   /* 子要素を中央に寄せる */
-  /* position: absolute; */
   display: flex;
-
-  /* z-index: +1; */
 }
 
 /* キャプチャ（p5.js のキャンバス） */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top > div.CameraCapture > canvas{
-    /* 中央に寄せる */
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
+  /* 中央に寄せる */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
 }
 
 /* キャプチャ下部の装飾とダウンロードボタン */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom{
+  /* サイズ */
   width: var(--CaptureFrameWidth);
   height: 7vh;
 
-  /* display: flex; */
-  /* justify-content: space-between; */
-
+  /* 子要素を順に左寄せ，真ん中，右寄せに配置する */
   display: grid;
   grid-template-columns: auto auto auto;
   justify-content: space-between;
+
+  /* 左右の装飾の長さ */
+  --CaptureContainerCenter_BttomSides_Width: 23.95833333vw
 }
 
-/* キャプチャ下部の装飾とダウンロードボタン(画像全体) */
+/* キャプチャ下部の装飾とダウンロードボタン */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img{
+  /* 上下中央に配置する */
   margin-top: auto;
   margin-bottom: auto;
 }
 
 /* キャプチャ下部の装飾(左) */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img.CaptureContainerCenter-bottom-left{
-  /* 左に配置 */
+  /* 左寄せで配置 */
   grid-column: 1;
 
-  /* width: 43.125%; */
-  width: 23.95833333vw;
-  /* height: 3.5vh; */
-
-  /* order: 1; 左に配置 */
+  width: var(--CaptureContainerCenter_BttomSides_Width);
 }
 
 /* ダウンロードボタン */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img.CaptureContainerCenter-bottom-center{
   /* 水平方向に対して中央に配置 */
-  /* order: 2; 
-  margin: auto; */
   grid-column: 2;
 
-  width: 4vw;
-  /* height: 100%; */
-
-
+  /* サイズ */
+  width: 3.958333333vw;
+  height: 7.125vh;
 }
 
 /* キャプチャ下部の装飾(右) */
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom > img.CaptureContainerCenter-bottom-right{
   /* 右に配置 */
   grid-column: 3;
-  /* order: 3; */
 
-  width: 23.95833333vw;
-  /* height: 3.5vh; */
+  width: var(--CaptureContainerCenter_BttomSides_Width);
 }
 
 /* ************* */
@@ -231,17 +155,14 @@
   padding-right: var(--CaptureContainerSide_PaddingSide);
   padding-top: var(--CaptureContainerSide_PaddingTop);
 
-  /* 要調整: media art projectのタイポの配置 */
+  /* 子要素の配置 */
   display: inline-block;
   text-align: right;
   text-align: right;
-  /* float: right; */
 }
 
-/* 要調整: fLensのタイポとロゴ */
+/* media art projectのタイポ */
 .CaptureContainer > div.CaptureContainerRight > img{
-
-    
   width: 7.92vw;
   height: 1.75vh;
 }

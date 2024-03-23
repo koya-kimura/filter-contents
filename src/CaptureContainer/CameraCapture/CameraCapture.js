@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import p5 from 'p5';
-// import CaptureFrame from "../../image/CaptureFrame.svg";
 
 // フィルタに関するファイル（GLSLソースファイルとプレビュー画像）のパスリスト
 import { fileList } from "./fileList";
@@ -29,7 +28,7 @@ const CameraCapture = ({ shaderIndex }) => {
     // const canvasWidthScale = 0.75;
     // const canvasWidthScale = 0.55;
     // const canvasWidthScale = 0.5375;
-    const canvasWidthScale = 0.50625;
+    const canvasWidthScale = 0.49;
 
     // キャンバスの横幅に対する高さの比率
     // const heightRate = 2 / 3;
@@ -104,9 +103,7 @@ const CameraCapture = ({ shaderIndex }) => {
   };
 
   return (
-    <div className="CameraCapture" ref={sketchRef}>
-      {/* <img src={CaptureFrame}></img> */}
-    </div>
+    <div className="CameraCapture" ref={sketchRef}></div>
   );
 };
 

@@ -6,7 +6,7 @@ import "./CaptureContainer.css";
 // import { fileList } from "./CameraCapture/fileList";
 
 // 画像に関するパス
-import flensTypo from "../image/fLens.svg";
+// import flensTypo from "../image/fLens.svg";
 import flensLogo from "../image/Logo.svg";
 // import CaptureFrame from "../image/CaptureFrame.svg";
 import CaptureFrame from "../image/CaptureFrame.png";
@@ -17,24 +17,12 @@ import mediaArtTypo from "../image/MediaArtProject.svg";
 
 // 画面上全体の領域
 export default function CaptureContainer({ shaderIndex }) {
-  // // 次のシェーダをフィルターとして適用する
-  // function nextShader() {
-  //   shaderIndex = (shaderIndex + 1) % fileList.length;
-  //   console.log(fileList[shaderIndex]["remarks"]);
-  // }
-
-  // // 前のシェーダをフィルターとして適用する
-  // function backShader() {
-  //   shaderIndex = (shaderIndex - 1 + fileList.length) % fileList.length;
-  //   console.log(fileList[shaderIndex]["remarks"]);
-  // }
-
   return (
     <div className="CaptureContainer">
       {/* 画面上左側: fLensのタイポとロゴ */}
       <div className="CaptureContainerLeft">
-        <img src={flensTypo} ></img>
-        <br></br>
+        {/* <img src={flensTypo} ></img>
+        <br></br> */}
         <img src={flensLogo}></img>
       </div>
 
