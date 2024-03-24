@@ -21,7 +21,7 @@ function App() {
 
     setIsMobile(isMobileDevice);
 
-    if (isMobile) {
+    if (isMobileDevice) {
       alert("PCで開いてね");
     }
   }, []);
