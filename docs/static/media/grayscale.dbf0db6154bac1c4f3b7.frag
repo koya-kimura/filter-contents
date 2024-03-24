@@ -17,7 +17,6 @@ uniform sampler2D u_tex;
 
 void main() {
   vec2 uv = vTexCoord;
-  uv.x = 1. - uv.x;
 
   // 正規化した座標の変数(-1.0 ~ 1.0)
   // vec2 pos = 2.0 * gl_FragCoord.xy / uResolution - 1.0;

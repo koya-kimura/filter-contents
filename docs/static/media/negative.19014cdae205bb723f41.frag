@@ -11,7 +11,6 @@ uniform sampler2D u_tex;
 
 void main() {
   vec2 uv = vTexCoord;
-  uv.x = 1. - uv.x;
 
   vec4 col = texture2D(u_tex, uv);
 

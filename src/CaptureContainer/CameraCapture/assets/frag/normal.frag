@@ -10,7 +10,7 @@ uniform vec2 u_Resolution;
 void main() {
   vec2 uv = vTexCoord;
   // 左右反転する処理
-  uv.x = 1. - 1. * uv.x;
+  // uv.x = 1. - 1. * uv.x;
   // uv = uv * 4.;
 
   vec4 col = texture2D(u_tex, uv);

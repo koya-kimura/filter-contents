@@ -73,6 +73,8 @@ const CameraCapture = ({ shaderIndex }) => {
       // filterShaders[shaderIndex].setUniform("u_Resolution", [p.width, p.height]);
       // filterShader.setUniform("u_Resolution", [capture.width, capture.height]);
       filterShader.setUniform("u_Resolution", [p.width, p.height]); // キャンバスの解像度
+      filterShader.setUniform("u_time", p.frameCount / 100);
+
 
       // if (P.frameCount % 3 == 0) {
       // キャプチャ画像のクロップ処理（取り急ぎ，カメラの比率は縦より横が大きいことを想定）
