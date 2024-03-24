@@ -28,21 +28,28 @@ function App() {
 
   return (
     <div className="App" >
+      {/* ケースA: デバイス毎に表示を切り替える */}
       {
+        /*
         isMobile ? (
-          /* スマートフォン機器での表示 */
+          // スマートフォン機器での表示
           <>
           </>
         ) : (
-          /* パソコンでの表示 */
-          <>
-            {/* アプリ上部 */}
-            < CaptureContainer shaderIndex={shaderIndex} />
-            {/* アプリ下部 */}
-            <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} />
-          </>
+          // パソコンでの表示
+        <>
+          < CaptureContainer shaderIndex={shaderIndex} />
+          <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} />
+        </>
         )
+      */
       }
+
+      {/* ケースB: とにかく表示したい場合 */}
+      {/* アプリ上部 */}
+      < CaptureContainer shaderIndex={shaderIndex} />
+      {/* アプリ下部 */}
+      <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} />
 
     </div >
   );
