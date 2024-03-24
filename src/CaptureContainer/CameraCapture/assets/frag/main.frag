@@ -2,38 +2,22 @@ precision mediump float;
 
 varying vec2 vTexCoord;
 
-uniform float u_time;
+// カメラからキャプチャした画像
 uniform sampler2D u_tex;
 
-float PI=3.14159265358979;
+uniform vec2 u_Resolution;
 
-float random(vec2 st){
-    return fract(sin(dot(st.xy,vec2(12.9898,78.233)))*43758.5453123);
-}
+void main() {
+  vec2 uv = vTexCoord;
+  // 左右反転する処理
+  // uv.x = 1. - 1. * uv.x;
+  // uv = uv * 4.;
 
-mat2 rot(float angle){
-    return mat2(cos(angle),-sin(angle),sin(angle),cos(angle));
-}
+  vec4 col = texture2D(u_tex, uv);
 
-float atan2(float y,float x){
-    return x==0.?sin(y)*PI/2.:atan(y,x);
-}
+  // vec2 pos = vTexCoord.xy / u_Resolution.xy;
 
-vec2 xy2pol(vec2 xy){
-    return vec2(atan2(xy.y,xy.x),length(xy));
-}
+  // vec4 col = texture2D(u_tex, pos);
 
-vec2 pol2xy(vec2 pol){
-    return pol.y*vec2(cos(pol.x),sin(pol.x));
-}
-
-void main(void){
-    vec2 uv=vTexCoord;
-
-    vec4 col=texture2D(u_tex,uv);
-
-    col.rgb = vec3(pow((col.r + col.g + col.b) / 3., 2.));
-    col.rgb = floor(col.rgb * 10.) / 10.;
-
-    gl_FragColor=col;
+  gl_FragColor = vec4(col);
 }

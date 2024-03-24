@@ -8,7 +8,7 @@ uniform sampler2D u_tex;
 vec2 centerVacuum (vec2 inputTexCoord) {
     vec2 outputTexCoord = inputTexCoord;
 
-    vec2 center = vec2(0.5, 0.5);
+    vec2 center = vec2(cos(u_time) / 6. + .5, sin(u_time) / 8. + .5);
 
     float dist = distance(inputTexCoord, center);
 

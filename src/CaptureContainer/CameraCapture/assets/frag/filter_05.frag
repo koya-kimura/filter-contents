@@ -5,6 +5,8 @@ varying vec2 vTexCoord;
 uniform float u_time;
 uniform sampler2D u_tex;
 
+vec2 direction;
+
 vec2 ripple(vec2 inputTexCoord) {
   vec2 outputTexCoord;
 
@@ -18,7 +20,7 @@ vec2 ripple(vec2 inputTexCoord) {
 
   float motion =  sin(phase) * .1 * max(0., 2. - dist * 1.);
 
-  vec2 direction = inputTexCoord - center;
+  direction = inputTexCoord - center;
 
   direction.x = direction.x * motion;
   direction.y = direction.y * motion;
@@ -32,5 +34,11 @@ vec2 ripple(vec2 inputTexCoord) {
 void main() {
   vec2 rippleTexCoord = ripple(vTexCoord);
 
-  gl_FragColor = texture2D(u_tex, rippleTexCoord);
+  vec4 color = texture2D(u_tex, rippleTexCoord);
+  
+  // color.r = color.r + direction.y;
+  // color.g = color.g + direction.y * .5;
+  color.b = color.b + direction.x * 2. + .2;
+  
+  gl_FragColor =  color;
 }

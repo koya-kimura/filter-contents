@@ -3,7 +3,7 @@ import FilterSelectContainer from "./FilterSelectContainer/FilterSelectContainer
 
 // import "./style_debug.css"; // デバッグ用のスタイリング
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Appコンポーネントの定義
 function App() {
@@ -12,6 +12,24 @@ function App() {
   // function changeShaderIndex(i) {
   //   setShaderIndex(i);
   // }
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent;
+    const mobileKeywords = ['Android', 'iPhone', 'iPad', 'Windows Phone'];
+
+    // ユーザーエージェント文字列にモバイルデバイスのキーワードが含まれているかをチェック
+    const isMobileDevice = mobileKeywords.some(keyword => userAgent.includes(keyword));
+
+    setIsMobile(isMobileDevice);
+
+    console.log(isMobileDevice);
+
+    if (isMobileDevice) {
+      alert("PCで開いてね");
+    }
+  }, []);
 
   return (
     <div className="App" >

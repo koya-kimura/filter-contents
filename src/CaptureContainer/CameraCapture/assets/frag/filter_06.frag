@@ -28,11 +28,11 @@ vec2 mirror(vec2 inputTexCoord) {
 vec2 circleMirror(vec2 inputTexCoord) {
     vec2 outputTexCoord = inputTexCoord;
 
-    vec2 center = vec2(0.5, 0.5);
+    vec2 center = vec2(sin(u_time) + 1.5, cos(u_time) + 1.);
 
     float dist = distance(inputTexCoord, center);
 
-    float phase = sin(dist - .8) / 2. + .1;
+    float phase = sin(dist - .8 * (sin(u_time) / 2. + 1.5)) / 2. + .1;
 
     vec2 direction = normalize(inputTexCoord - center);
 

@@ -11,9 +11,9 @@ import V_NORMAL from "./assets/vert/main.vert"           // 無処理
 /* フラグメントシェーダ */
 /* ------------------- */
 import F_NORMAL from "./assets/frag/main.frag"           // 無処理
-import F_GRAYSCAL from "./assets/frag/grayscale.frag"    // グレイスケール
-import F_NEGATIVE from "./assets/frag/negative.frag"     // ネガ
-import F_GREENAILEN from "./assets/frag/filter_01.frag"  // グリーンエイリアン
+// import F_GRAYSCAL from "./assets/frag/grayscale.frag"    // グレイスケール
+// import F_NEGATIVE from "./assets/frag/negative.frag"     // ネガ
+import F_GREENAILEN from "./assets/frag/greenAilen.frag"  // グリーンエイリアン
 import F_F2 from "./assets/frag/filter_02.frag"  // 
 import F_F3 from "./assets/frag/filter_03.frag"  // 
 import F_F4 from "./assets/frag/filter_04.frag"  // 
@@ -25,14 +25,15 @@ import F_F7 from "./assets/frag/filter_07.frag"  //
 /*    プレビュー画像    */
 /* ------------------- */
 import P_NORMAL from "./assets/prev/normal.png"           // 無処理
-import P_GRAYSCALE from "./assets/prev/grayscale.png"    // グレイスケール
-import P_NEGATIVE from "./assets/prev/negative.png"     // ネガ
-import P_GREENAILEN from "./assets/prev/green.png"        // グリーンエイリアン
+// import P_GRAYSCALE from "./assets/prev/grayscale.png"    // グレイスケール
+// import P_NEGATIVE from "./assets/prev/negative.png"     // ネガ
+import P_GREENAILEN from "./assets/prev/greenAilen.png"        // グリーンエイリアン
 
 /* ************************** */
 /*       ファイルリスト        */
 /* ************************** */
 export let fileList = [
+  // 未加工のキャプチャ
   {
     vert: V_NORMAL,
     frag: F_NORMAL,
@@ -40,6 +41,7 @@ export let fileList = [
     remarks: "ノーマル",
     designer: "Sakamoto"
   },
+  // グレイスケール(テスト用)
   // {
   //   vert: V_NORMAL,
   //   frag: F_GRAYSCAL,
@@ -47,6 +49,7 @@ export let fileList = [
   //   remarks: "グレイスケール",
   //   designer: "Sakamoto"
   // },
+  // ネガティブ(テスト用)
   // {
   //   vert: V_NORMAL,
   //   frag: F_NEGATIVE,
