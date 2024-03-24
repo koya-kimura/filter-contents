@@ -20,28 +20,23 @@ const CameraCapture = ({ shaderIndex }) => {
   }, [shaderIndex]);
 
   const sketchHandler = p => {
-    let filterShaders = []; // シェーダオブジェクト
+    // let filterShaders = []; // シェーダオブジェクト
+    let filterShader; // シェーダオブジェクト
     let capture;            // カメラのキャプチャ
 
     // ページに対するキャンバスの最大サイズ率
-    // const canvasWidthScale = 0.8;
-    // const canvasWidthScale = 0.75;
-    // const canvasWidthScale = 0.55;
-    // const canvasWidthScale = 0.5375;
-    const canvasWidthScale = 0.50;
-    // const canvasWidthScale = 0.49 * 0.95;
+    const canvasScale = 0.90;
+    // 画面に対するフレームのサイズ比率(CaptureContainer.css を参照)
+    const CaptureFrameWidth = 0.5555555556 * canvasScale;
+    const CaptureFrameHeight = 0.58875 * canvasScale;
 
-    // キャンバスの横幅に対する高さの比率
-    // const heightRate = 2 / 3;
-
-    // 全フィルタファイルを読み込んでフィルタ(Shaderオブジェクト)を生成
+    // 選択中のフィルタを実装するShaderファイルのみ読み込む
     p.preload = () => {
-      fileList.forEach(fp => {
-        filterShaders.push(p.loadShader(fp.vert, fp.frag));
-      });
-
-      // filterShaders.push(p.loadShader(fileList[fileList.length - 1].vert, fileList[fileList.length - 1].frag,))
-
+      // 全フィルタファイルを読み込んでフィルタ(Shaderオブジェクト)を生成
+      // fileList.forEach(fp => {
+      //   filterShaders.push(p.loadShader(fp.vert, fp.frag));
+      // });
+      filterShader = p.loadShader(fileList[shaderIndex].vert, fileList[shaderIndex].frag)
     };
 
     p.setup = () => {
@@ -49,24 +44,35 @@ const CameraCapture = ({ shaderIndex }) => {
       P = p;
 
       // メインキャンバスの作成
-      p.createCanvas(p.windowWidth * canvasWidthScale, p.windowHeight * canvasWidthScale, p.WEBGL);
+      // p5 の windowWidth と windowHeight を使うのは非推奨(ページのサイズを取得するタイミングが遅い)
+      // p.createCanvas(p.windowWidth * canvasWidthScale, p.windowHeight * canvasWidthScale, p.WEBGL);
+      // p.createCanvas(CaptureFrameWidth * p.windowWidth, CaptureFrameHeight * p.windowHeight, p.WEBGL);
+      p.createCanvas(CaptureFrameWidth * window.innerWidth, CaptureFrameHeight * window.innerHeight, p.WEBGL);
+      // console.log(CaptureFrameWidth * p.windowWidth, CaptureFrameHeight * p.windowHeight);
+
       // capture = p.createCapture(p.VIDEO, { flipped: true });
       capture = p.createCapture(p.VIDEO, { flipped: true }, calculateLayout);
       // capture = p.createCapture(p.VIDEO, calculateLayout);
 
       capture.hide();
 
-      // カメラの解像度を考慮したキャンバスサイズの変更
-      // calculateLayout();
+      p.pixelDensity(1);
     };
 
     p.draw = () => {
       // 選択中のフィルタをShaderに適用する
-      p.shader(filterShaders[shaderIndex]);
+      // p.shader(filterShaders[shaderIndex]);
+      p.shader(filterShader);
 
       // Shaderへ情報を渡す
-      filterShaders[shaderIndex].setUniform("u_Resolution", [p.width, p.height]); // キャンバスの解像度
-      filterShaders[shaderIndex].setUniform("u_tex", capture);                    // Webカメラからのキャプチャ画像
+      // Webカメラからのキャプチャ画像
+      // filterShaders[shaderIndex].setUniform("u_tex", capture);
+      filterShader.setUniform("u_tex", capture);
+
+      // キャンバスの解像度
+      // filterShaders[shaderIndex].setUniform("u_Resolution", [p.width, p.height]);
+      // filterShader.setUniform("u_Resolution", [capture.width, capture.height]);
+      filterShader.setUniform("u_Resolution", [p.width, p.height]); // キャンバスの解像度
 
       // if (P.frameCount % 3 == 0) {
       // キャプチャ画像のクロップ処理（取り急ぎ，カメラの比率は縦より横が大きいことを想定）
@@ -84,22 +90,41 @@ const CameraCapture = ({ shaderIndex }) => {
 
       // キャプチャ画像にフィルタ加工をかけたものを描画
       p.rect(0, 0, p.width, p.height);
-
-      console.log(p.windowWidth, p.windowHeight)
     };
 
     p.windowResized = () => {
-      // p.resizeCanvas(p.windowWidth * canvasWidthScale, p.windowHeight * canvasWidthScale, p.WEBGL);
-      // p.resizeCanvas(p.windowWidth * canvasWidthScale, p.windowHeight * canvasWidthScale, p.WEBGL);
       calculateLayout();
     }
 
     function calculateLayout() {
-      let newWidth = p.windowWidth * canvasWidthScale;
-      let newHeight = p.windowHeight * canvasWidthScale;
-      let scale = p.min(newWidth / capture.width, newHeight / capture.height);
-      p.resizeCanvas(capture.width * scale, capture.height * scale, p.WEBGL);
-      console.log(p.width);
+      // 高さを基準に調整
+      // コメントアウトは非推奨コード
+      // let newWidth = p.windowWidth * canvasWidthScale;
+      // let newHeight = p.windowHeight * canvasWidthScale;
+      // let scale = p.min(newWidth / capture.width, newHeight / capture.height);
+      // p.resizeCanvas(capture.width * scale, capture.height * scale, p.WEBGL);
+
+      let newHeight = CaptureFrameHeight * window.innerHeight;
+      let newHeightScale = newHeight / capture.height;
+      let newWidth = capture.width * newHeightScale;
+
+      // 横幅がはみ出た場合はさらに横幅を基準に調整
+      // コメントアウトは非推奨コード
+      // if (newWidth > CaptureFrameWidth * p.windowWidth) {
+      //   console.log(newWidth, CaptureFrameWidth * p.windowWidth)
+      //   newWidth = CaptureFrameWidth * p.windowWidth;
+      //   let newWidthScale = newWidth / capture.width;
+      //   newHeight = capture.height * newWidthScale;
+      // }
+
+      if (newWidth > CaptureFrameWidth * window.innerWidth) {
+        newWidth = CaptureFrameWidth * window.innerWidth;
+        let newWidthScale = newWidth / capture.width;
+        newHeight = capture.height * newWidthScale;
+      }
+
+      p.resizeCanvas(newWidth, newHeight, p.WEBGL);
+
     }
   };
 
