@@ -1,18 +1,15 @@
 import CaptureContainer from "./CaptureContainer/CaptureContainer"
 import FilterSelectContainer from "./FilterSelectContainer/FilterSelectContainer"
 
-// import "./style_debug.css"; // デバッグ用のスタイリング
 import "./App.css";
 import { useState, useEffect } from "react";
 
 // Appコンポーネントの定義
 function App() {
+  // Shaderのインデックス番号 (選択中フィルタの番号)
   const [shaderIndex, setShaderIndex] = useState(0);
 
-  // function changeShaderIndex(i) {
-  //   setShaderIndex(i);
-  // }
-
+  // 利用マシンがスマートフォン機器か否か
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -24,21 +21,30 @@ function App() {
 
     setIsMobile(isMobileDevice);
 
-    console.log(isMobileDevice);
-
-    if (isMobileDevice) {
+    if (isMobile) {
       alert("PCで開いてね");
     }
   }, []);
 
   return (
     <div className="App" >
-      {/* アプリ上部 */}
-      <CaptureContainer shaderIndex={shaderIndex} />
+      {
+        isMobile ? (
+          /* スマートフォン機器での表示 */
+          <>
+          </>
+        ) : (
+          /* パソコンでの表示 */
+          <>
+            {/* アプリ上部 */}
+            < CaptureContainer shaderIndex={shaderIndex} />
+            {/* アプリ下部 */}
+            <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} />
+          </>
+        )
+      }
 
-      {/* アプリ下部 */}
-      <FilterSelectContainer shaderIndex={shaderIndex} setShaderIndex={setShaderIndex} />
-    </div>
+    </div >
   );
 }
 

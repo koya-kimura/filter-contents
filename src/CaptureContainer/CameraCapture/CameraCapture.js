@@ -20,9 +20,8 @@ const CameraCapture = ({ shaderIndex }) => {
   }, [shaderIndex]);
 
   const sketchHandler = p => {
-    // let filterShaders = []; // シェーダオブジェクト
     let filterShader; // シェーダオブジェクト
-    let capture;            // カメラのキャプチャ
+    let capture;      // カメラのキャプチャ
 
     // ページに対するキャンバスの最大サイズ率
     const canvasScale = 0.90;
@@ -32,10 +31,6 @@ const CameraCapture = ({ shaderIndex }) => {
 
     // 選択中のフィルタを実装するShaderファイルのみ読み込む
     p.preload = () => {
-      // 全フィルタファイルを読み込んでフィルタ(Shaderオブジェクト)を生成
-      // fileList.forEach(fp => {
-      //   filterShaders.push(p.loadShader(fp.vert, fp.frag));
-      // });
       filterShader = p.loadShader(fileList[shaderIndex].vert, fileList[shaderIndex].frag)
     };
 
@@ -48,11 +43,10 @@ const CameraCapture = ({ shaderIndex }) => {
       // p.createCanvas(p.windowWidth * canvasWidthScale, p.windowHeight * canvasWidthScale, p.WEBGL);
       // p.createCanvas(CaptureFrameWidth * p.windowWidth, CaptureFrameHeight * p.windowHeight, p.WEBGL);
       p.createCanvas(CaptureFrameWidth * window.innerWidth, CaptureFrameHeight * window.innerHeight, p.WEBGL);
-      // console.log(CaptureFrameWidth * p.windowWidth, CaptureFrameHeight * p.windowHeight);
 
-      // capture = p.createCapture(p.VIDEO, { flipped: true });
-      capture = p.createCapture(p.VIDEO, { flipped: true }, calculateLayout);
-      // capture = p.createCapture(p.VIDEO, calculateLayout);
+      // キャプチャの開始とキャンバスサイズの調整を同期的に処理する
+      // capture = p.createCapture(p.VIDEO, { flipped: true }, calculateLayout);
+      capture = p.createCapture(p.VIDEO, calculateLayout);
 
       capture.hide();
 
@@ -61,34 +55,28 @@ const CameraCapture = ({ shaderIndex }) => {
 
     p.draw = () => {
       // 選択中のフィルタをShaderに適用する
-      // p.shader(filterShaders[shaderIndex]);
       p.shader(filterShader);
 
-      // Shaderへ情報を渡す
+      /* ***************** */
+      /* Shaderへ情報を渡す */
+      /* ***************** */
       // Webカメラからのキャプチャ画像
-      // filterShaders[shaderIndex].setUniform("u_tex", capture);
       filterShader.setUniform("u_tex", capture);
 
       // キャンバスの解像度
-      // filterShaders[shaderIndex].setUniform("u_Resolution", [p.width, p.height]);
       // filterShader.setUniform("u_Resolution", [capture.width, capture.height]);
-      filterShader.setUniform("u_Resolution", [p.width, p.height]); // キャンバスの解像度
+      filterShader.setUniform("u_Resolution", [p.width, p.height]);
+
+      // 時間経過
       filterShader.setUniform("u_time", p.frameCount / 100);
 
-
-      // if (P.frameCount % 3 == 0) {
       // キャプチャ画像のクロップ処理（取り急ぎ，カメラの比率は縦より横が大きいことを想定）
+      // if (P.frameCount % 3 == 0) {
       // let cloppedHeight = capture.width * p.height / p.width;
       // let cloppedY = (capture.height - cloppedHeight) / 2;
       // let c = capture.get(0, cloppedY, capture.width, cloppedHeight);
       // filterShaders[shaderIndex].setUniform("u_tex", c);                    // Webカメラからのキャプチャ画像
       //      filterShaders[shaderIndex].setUniform("u_tex", capture.get(0, cloppedY, capture.width, cloppedHeight));                    // Webカメラからのキャプチャ画像
-
-      // p.rect(0, 0, p.width, p.height);
-
-      // }
-
-      // filterShaders[shaderIndex].setUniform("u_time", p.frameCount / 100);
 
       // キャプチャ画像にフィルタ加工をかけたものを描画
       p.rect(0, 0, p.width, p.height);
@@ -98,6 +86,7 @@ const CameraCapture = ({ shaderIndex }) => {
       calculateLayout();
     }
 
+    // キャンバスサイズを調整する
     function calculateLayout() {
       // 高さを基準に調整
       // コメントアウトは非推奨コード
@@ -106,6 +95,7 @@ const CameraCapture = ({ shaderIndex }) => {
       // let scale = p.min(newWidth / capture.width, newHeight / capture.height);
       // p.resizeCanvas(capture.width * scale, capture.height * scale, p.WEBGL);
 
+      // 以下，推奨コード
       let newHeight = CaptureFrameHeight * window.innerHeight;
       let newHeightScale = newHeight / capture.height;
       let newWidth = capture.width * newHeightScale;
@@ -119,6 +109,7 @@ const CameraCapture = ({ shaderIndex }) => {
       //   newHeight = capture.height * newWidthScale;
       // }
 
+      // 以下，推奨コード
       if (newWidth > CaptureFrameWidth * window.innerWidth) {
         newWidth = CaptureFrameWidth * window.innerWidth;
         let newWidthScale = newWidth / capture.width;
@@ -137,7 +128,7 @@ const CameraCapture = ({ shaderIndex }) => {
 
 export default CameraCapture;
 
-// 画像の保存
+// 画像の保存（CaptureContainer.js で使う）
 export function saveImage() {
   P.saveCanvas();
 }
