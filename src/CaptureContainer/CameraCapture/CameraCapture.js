@@ -28,7 +28,8 @@ const CameraCapture = ({ shaderIndex }) => {
     // const canvasWidthScale = 0.75;
     // const canvasWidthScale = 0.55;
     // const canvasWidthScale = 0.5375;
-    const canvasWidthScale = 0.49 * 0.95;
+    const canvasWidthScale = 0.50;
+    // const canvasWidthScale = 0.49 * 0.95;
 
     // キャンバスの横幅に対する高さの比率
     // const heightRate = 2 / 3;

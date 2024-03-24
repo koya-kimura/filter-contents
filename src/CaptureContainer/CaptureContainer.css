@@ -45,11 +45,14 @@
 .CaptureContainer > div.CaptureContainerCenter {
   /* 内部に余白を作る */
   margin-top: 8.625vh;
+  margin-top: var(--CaptureContainerSide_PaddingTop);
   margin-left: 13.47222222vw;
   margin-right: 12.08333333vw;
 
   /* キャプチャのフレーム画像の横幅 */
   --CaptureFrameWidth: 55.55555556vw;
+  /* フレーム下部にある領域の高さ */
+  --CaptureFrameBottom_Height: 7vh;
 }
 
 /* キャプチャとそのフレーム画像 */
@@ -68,7 +71,7 @@
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-top > img{
   /* 縦横に柔軟性あり */
   width: var(--CaptureFrameWidth);
-  height: 53.75vh;
+  height: 58.875vh;
 
   /* 中央に寄せる */
   top: 0;
@@ -99,7 +102,7 @@
 .CaptureContainer > div.CaptureContainerCenter > div.CaptureContainerCenter-bottom{
   /* サイズ */
   width: var(--CaptureFrameWidth);
-  height: 7vh;
+  height: var(--CaptureFrameBottom_Height);
 
   /* 子要素を順に左寄せ，真ん中，右寄せに配置する */
   display: grid;
