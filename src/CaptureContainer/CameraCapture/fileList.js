@@ -12,130 +12,131 @@
 /* ------------------- */
 /*    頂点シェーダー    */
 /* ------------------- */
-import V_normal from "./assets/vert/main.vert"           // 未加工のキャプチャ
+import V_main from "./assets/vert/main.vert"           // 未加工のキャプチャ
 
 /* ------------------- */
 /* フラグメントシェーダ */
 /* ------------------- */
 import F_normal from "./assets/frag/Normal.frag"            // 未加工のキャプチャ
 import F_GREENAILEN from "./assets/frag/GreenAlien.frag"  // グリーンエイリアン
-import F_filter_02 from "./assets/frag/BlueStairs.frag"    // 
-import F_filter_03 from "./assets/frag/VortexTexture.frag"    // 
-import F_filter_04 from "./assets/frag/MosaicGlitch.frag"    // 
-import F_filter_05 from "./assets/frag/Submerge.frag"    // 
-import F_filter_06 from "./assets/frag/Pretense.frag"    // 
-import F_filter_07 from "./assets/frag/BlackHole.frag"    // 
+import F_BlueStairs from "./assets/frag/BlueStairs.frag"    // 
+import F_VortexTexture from "./assets/frag/VortexTexture.frag"    // 
+import F_MosaicGlitch from "./assets/frag/MosaicGlitch.frag"    // 
+import F_Submerge from "./assets/frag/Submerge.frag"    // 
+import F_Pretense from "./assets/frag/Pretense.frag"    // 
+import F_BlackHole from "./assets/frag/BlackHole.frag"    // 
 
 /* ------------------- */
 /*    プレビュー画像    */
 /* ------------------- */
 import P_normal from "./assets/prev/Normal.png"           // 未加工のキャプチャ
 import P_GREENAILEN from "./assets/prev/GreenAlien.png"   // グリーンエイリアン
-import P_filter_02 from "./assets/prev/BlueStairs.png"    // 
-import P_filter_03 from "./assets/prev/VortexTexture.png"    // 
-import P_filter_04 from "./assets/prev/MosaicGlitch.png"    // 
-import P_filter_05 from "./assets/prev/Submerge.png"    // 
-import P_filter_06 from "./assets/prev/Pretense.png"    // 
-import P_filter_07 from "./assets/prev/BlackHole.png"    // 
+import P_BlueStairs from "./assets/prev/BlueStairs.png"    // 
+import P_VortexTexture from "./assets/prev/VortexTexture.png"    // 
+import P_MosaicGlitch from "./assets/prev/MosaicGlitch.png"    // 
+import P_Submerge from "./assets/prev/Submerge.png"    // 
+import P_Pretense from "./assets/prev/Pretense.png"    // 
+import P_BlackHole from "./assets/prev/BlackHole.png"    // 
 
 /* ************************** */
 /*       ファイルリスト        */
 /* ************************** */
-export let fileList = [
+export const fileList = [
   /* テンプレート */
   // {
+  //   name: "フィルタ名",
   //   vert: V_フィルタ名,
   //   frag: F_フィルタ名,
-  //   name: "フィルタ名(いずれ表示する用)",
-  //   designer: "開発者(任意)"
+  //   prev: P_フィルタ名,
+  //   developer: "開発者(任意)"
   // },
 
   /* グレイスケール(テスト用)  */
   // {
-  //   vert: V_normal,
+  //   name: "グレイスケール",
+  //   vert: V_main,
   //   frag: F_GRAYSCAL,
   //   prev: P_GRAYSCALE,
-  //   name: "グレイスケール",
-  //   designer: "Sakamoto"
+  //   developer: "s"
   // },
   /* ネガティブ(テスト用) */
   // {
-  //   vert: V_normal,
+  //   name: "ネガフィルム",
+  //   vert: V_main,
   //   frag: F_NEGATIVE,
   //   prev: P_NEGATIVE,
-  //   name: "ネガフィルム",
-  //   designer: "Sakamoto"
+  //   developer: "s"
   // },
 
   /* 未加工のキャプチャ */
   {
-    vert: V_normal,
+    name: "Normal",
+    vert: V_main,
     frag: F_normal,
     prev: P_normal,
-    name: "ノーマル",
-    designer: "Sakamoto"
+    developer: "s"
   },
 
   /* グリーンエイリアン */
   {
-    vert: V_normal,
+    name: "GreenAlien",
+    vert: V_main,
     frag: F_GREENAILEN,
     prev: P_GREENAILEN,
-    name: "GreenAlien",
-    designer: "t"
+    developer: "t"
   },
 
   /* BlueStairs */
   {
-    vert: V_normal,
-    frag: F_filter_02,
-    prev: P_filter_02,
     name: "BlueStairs",
-    designer: "d"
+    vert: V_main,
+    frag: F_BlueStairs,
+    prev: P_BlueStairs,
+    developer: "d"
   },
 
   /* VortexTexture */
   {
-    vert: V_normal,
-    frag: F_filter_03,
-    prev: P_filter_03,
     name: "VortexTexture",
-    designer: "d"
+    vert: V_main,
+    frag: F_VortexTexture,
+    prev: P_VortexTexture,
+    developer: "d"
   },
 
   /* MosaicGlitch */
   {
-    vert: V_normal,
-    frag: F_filter_04,
-    prev: P_filter_04,
     name: "MosaicGlitch",
-    designer: "d"
+    vert: V_main,
+    frag: F_MosaicGlitch,
+    prev: P_MosaicGlitch,
+    developer: "d"
   },
 
   /* Submerge */
   {
-    vert: V_normal,
-    frag: F_filter_05,
-    prev: P_filter_05,
     name: "Submerge",
-    designer: "d"
+    vert: V_main,
+    frag: F_Submerge,
+    prev: P_Submerge,
+    developer: "d"
   },
 
   /* Pretense */
   {
-    vert: V_normal,
-    frag: F_filter_06,
-    prev: P_filter_06,
     name: "Pretense",
-    designer: "d"
+    vert: V_main,
+    frag: F_Pretense,
+    prev: P_Pretense,
+    developer: "d"
   },
 
   /* BlackHole */
   {
-    vert: V_normal,
-    frag: F_filter_07,
-    prev: P_filter_07,
     name: "BlackHole",
-    designer: "d"
+    vert: V_main,
+    frag: F_BlackHole,
+    prev: P_BlackHole,
+    developer: "d"
   },
-]
+];
