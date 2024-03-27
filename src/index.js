@@ -9,15 +9,15 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // 本番用コード
-// root.render(
-//   // React.StrictModeコンポーネントでアプリケーションをラップする
-//   <React.StrictMode>
-//     {/* Appコンポーネントを描画 */}
-//     <App />
-//   </React.StrictMode>
-// );
+root.render(
+  // React.StrictModeコンポーネントでアプリケーションをラップする
+  <React.StrictMode>
+    {/* Appコンポーネントを描画 */}
+    <App />
+  </React.StrictMode>
+);
 
 // 実験用コード
-root.render(
-  < App />
-);
+// root.render(
+//   < App />
+// );

@@ -14,25 +14,39 @@
 - アプリの組みなおし
 
 # ファイル構成
+```*``` は任意の文字列を示します
+
 ```
 filter-contents
 L README.md             # 本ドキュメント
 L README_SRC            # 本ドキュメントの画像
-L package.json          # プロジェクトの管理ファイル(特にバージョン)
+L package.json          # 触らない
 L package-lock.json     # 触らない
-L docs                  # 触らない
-L node_modules          # 触らない
-L public                # 後にファビコンを入れる
-  L index.html          # 基本的に触らない
-L src                   # React アプリに関連するソースファイルを保管
+L docs                  # ビルドファイル
+L node_modules          # 触らない(リポジトリからは消すこと)
+L public                # 静的なソースファイルの保管場所
+  L index.html          # Web ページ
+  L Favicon.svg         # ファビコン
+L src                   # React アプリに関連するソースファイルの保管場所
   L index.js            # ビルド時に本番環境用のレンダリング設定にすること
   L App.js              # メインコンポーネント
-  L style.css           # デザイン
-  L style_template.css  # デバッグ要デザイン
-  L CameraCapture       # 
-    L CameraCapture.js  # カメラキャプチャのコンポーネント(p5.jsの描画処理)
-    L filterList.js     # フィルタ(シェーダファイル)のリスト管理
-    L assets            # シェーダファイルの保管
+  L App.css             # ページ全体のデザイン
+  L CaptureContainer    # Web アプリ上部
+   L CaptureContainer.js   
+    L CaptureContainer.css  
+    L CameraCapture             # カメラのキャプチャ部分
+      L CameraCapture.js        # カメラキャプチャのコンポーネント(p5.jsの描画処理)
+      L filterList.js           # フィルタ(シェーダファイル)のインポート管理
+      L _CameraCapture_class.js # 
+      L assets                  # フィルタに関するファイルの保管場所
+        L vert                  # 
+        L frag                  # 
+          L test                # 開発中に使ったファイル(没)
+        L prev                  # 
+          L test                # 開発中に使ったファイル(没)
+  L FilterSelectContainer       
+    L FilterSelectContainer.js  
+    L FilterSelectContainer.css 
 ```
 
 # 動作確認の方法
