@@ -68,15 +68,6 @@ export const fileList = [
   //   developer: "s"
   // },
 
-  /* 未加工のキャプチャ */
-  {
-    name: "Normal",
-    vert: V_main,
-    frag: F_normal,
-    prev: P_normal,
-    developer: "s"
-  },
-
   /* グリーンエイリアン */
   {
     name: "GreenAlien",
@@ -138,5 +129,14 @@ export const fileList = [
     frag: F_BlackHole,
     prev: P_BlackHole,
     developer: "d"
+  },
+
+  /* 未加工のキャプチャ */
+  {
+    name: "Normal",
+    vert: V_main,
+    frag: F_normal,
+    prev: P_normal,
+    developer: "s"
   },
 ];
